@@ -1,0 +1,28 @@
+# ------ root_path/dataset_name ------
+root_path: 'data'
+
+seed: 3407
+
+# ------ Hyperparamters ------
+search_hp: True
+
+search_scale: [10, 10, 1]
+search_step: [200, 20, 20]
+
+init_beta: 1
+init_alpha: 5
+init_gamma: 0.1
+
+eps: 0.001
+feat_num: 900
+
+w_training_free: [0.1, 0.9]
+w_training: [0.2, 0.8]
+
+# ------ Basic Config ------
+dataset: 'fgvc'
+backbone: 'RN50'
+
+lr: 0.001
+augment_epoch: 10
+train_epoch: 30
