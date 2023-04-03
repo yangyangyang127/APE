@@ -71,4 +71,4 @@ users can test the proposed APE and APE-T, where you can change the `dataset_nam
 
 
 ## Acknowledgements
-We build on several previous well-maintained repositories like [TIP-Adapter](https://github.com/gaopengcuhk/Tip-Adapter/), [CLIP](https://github.com/openai/CLIP/tree/main/clip), and [CoOp](https://github.com/KaiyangZhou/CoOp/),  and [SuS-X](https://github.com/vishaal27/SuS-X). We thank the authors for providing such amazing code, and enabling further research towards better vision-language model adaptation.
+We build on several previous well-maintained repositories like [TIP-Adapter](https://github.com/gaopengcuhk/Tip-Adapter/), [CLIP](https://github.com/openai/CLIP/tree/main/clip), and [CoOp](https://github.com/KaiyangZhou/CoOp/), [SuS-X](https://github.com/vishaal27/SuS-X), and [CuPL](https://github.com/sarahpratt/CuPL). We thank the authors for providing such amazing code, and enabling further research towards better vision-language model adaptation.
