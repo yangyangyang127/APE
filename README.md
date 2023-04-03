@@ -67,7 +67,7 @@ By running
 ```
 bash CUDA_VISIBLE_DEVICES=0 python main.py --config configs/[dataset_name].yaml --shot [shot_number]
 ```
-users can test the proposed APE and APE-T, where you can change the `dataset_name` and `shot_number`.
+users can test the proposed APE and APE-T, where you can change the `dataset_name` and `shot_number`. `dataset_name` should be one of `[caltech101, dtd, eurosat, fgvc, food101, imagenet, oxford_flowers, oxford_pets, stanford_cars, sun397, ucf101]`, and `shot_number` is chosen from 1/2/4/8/16.
 
 
 ## Acknowledgements
