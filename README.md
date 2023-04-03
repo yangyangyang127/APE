@@ -1,12 +1,12 @@
 # APE
 
-Implementation of **Not All Features Matter:Enhancing Few-shot CLIP with Adaptive Prior Refinement**, a few-shot framework designed for CLIP and other vision-language models.
+Implementation of **"Not All Features Matter:Enhancing Few-shot CLIP with Adaptive Prior Refinement"**, a few-shot framework designed for CLIP and other vision-language models.
 
 ## Introduction
 **A**daptive **P**rior r**E**finement (**APE**) is a new method for few-shot CLIP, which achieves superior accuracy with high computational efficiency. Via a prior refinement module, we analyze the inter-class disparity in the downstream data and decouple the domain-specific knowledge from the CLIP-extracted cache model. On top of that, we introduce two model variants, a training-free APE and a training-required APE-T. We explore the trilateral affinities between the test image, prior cache model, and textual representations, and only enable a lightweight category-residual module to be trained. For the average accuracy over 11 benchmarks, both APE and APE-T attain SOTA.
 
 <div align="center">
-  <img width=900 src="framework.png"/>
+  <img width=800 src="framework.png"/>
 </div>
 
 ## Requirements
