@@ -57,15 +57,15 @@ APE/
 ```
 
 Or you can extract the features by youself by running 
-```
-bash CUDA_VISIBLE_DEVICES=0 python extract_features.py
+```bash 
+CUDA_VISIBLE_DEVICES=0 python extract_features.py
 ```
 to extract the features of all 11 datasets. Including the few-shot training set representation, validation and test set representation, and textual representation.
 
 ### Trying APE and APE-T
 By running
-```
-bash CUDA_VISIBLE_DEVICES=0 python main.py --config configs/[dataset_name].yaml --shot [shot_number]
+```bash 
+CUDA_VISIBLE_DEVICES=0 python main.py --config configs/[dataset_name].yaml --shot [shot_number]
 ```
 users can test the proposed APE and APE-T, where you can change the `dataset_name` and `shot_number`. `dataset_name` should be one of `[caltech101, dtd, eurosat, fgvc, food101, imagenet, oxford_flowers, oxford_pets, stanford_cars, sun397, ucf101]`, and `shot_number` is chosen from 1/2/4/8/16.
 
