@@ -1,6 +1,6 @@
 # APE
 
-Implementation of **"Not All Features Matter:Enhancing Few-shot CLIP with Adaptive Prior Refinement"**, a few-shot framework designed for CLIP and other vision-language models.
+Implementation of  [Not All Features Matter:Enhancing Few-shot CLIP with Adaptive Prior Refinement](https://arxiv.org/abs/2304.01195), a few-shot framework designed for CLIP and other vision-language models.
 
 ## Introduction
 **A**daptive **P**rior r**E**finement (**APE**) is a new method for few-shot CLIP, which achieves superior accuracy with high computational efficiency. Via a prior refinement module, we analyze the inter-class disparity in the downstream data and decouple the domain-specific knowledge from the CLIP-extracted cache model. On top of that, we introduce two model variants, a training-free APE and a training-required APE-T. We explore the trilateral affinities between the test image, prior cache model, and textual representations, and only enable a lightweight category-residual module to be trained. For the average accuracy over 11 benchmarks, both APE and APE-T attain SOTA.
@@ -72,3 +72,18 @@ users can test the proposed APE and APE-T, where you can change the `dataset_nam
 
 ## Acknowledgements
 We build on several previous well-maintained repositories like [TIP-Adapter](https://github.com/gaopengcuhk/Tip-Adapter/), [CLIP](https://github.com/openai/CLIP/tree/main/clip), and [CoOp](https://github.com/KaiyangZhou/CoOp/), [SuS-X](https://github.com/vishaal27/SuS-X), and [CuPL](https://github.com/sarahpratt/CuPL). We thank the authors for providing such amazing code, and enabling further research towards better vision-language model adaptation.
+
+## Reference
+
+Not All Features Matter:Enhancing Few-shot CLIP with Adaptive Prior Refinement
+
+```
+@misc{zhu2023features,
+      title={Not All Features Matter: Enhancing Few-shot CLIP with Adaptive Prior Refinement}, 
+      author={Xiangyang Zhu and Renrui Zhang and Bowei He and Aojun Zhou and Dong Wang and Bin Zhao and Peng Gao},
+      year={2023},
+      eprint={2304.01195},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
