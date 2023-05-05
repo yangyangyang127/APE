@@ -18,14 +18,12 @@ def cls_acc(output, target, topk=1):
     acc = 100 * acc / target.shape[0]
     return acc
 
-def cal_criterion(cfg, clip_weights, cache_keys):
+
+def cal_criterion(cfg, clip_weights, cache_keys, only_use_txt=False):
     
     feat_dim, cate_num = clip_weights.shape
     text_feat = clip_weights.t().unsqueeze(1)
     cache_feat = cache_keys.reshape(cate_num, cfg['shots'], feat_dim)
-    
-    feats = torch.cat([text_feat, cache_feat], dim=1)
-    samp_num = feats.shape[1]
     
     save_path = 'caches/{}'.format(cfg['dataset'])
     save_file = '{}/criterion_{}_{}shot.pt'.format(save_path, cfg['backbone'].replace('/', ''), cfg['shots'])
@@ -33,8 +31,27 @@ def cal_criterion(cfg, clip_weights, cache_keys):
     if os.path.exists(save_file):
         print('Loading criterion...')
         sim = torch.load(save_file)
+    elif only_use_txt:
+        print('Calculating criterion...')
+        
+        feats = text_feat.squeeze()
+        print(feats.shape)
+        
+        sim_sum = torch.zeros((feat_dim)).cuda()
+        count = 0
+        for i in range(cate_num):
+            for j in range(cate_num):
+                if i != j:
+                    sim_sum += feats[i, :] * feats[j, :]
+                    count += 1
+        sim = sim_sum / count
+        torch.save(sim, save_file)
     else:
         print('Calculating criterion...')
+        
+        feats = torch.cat([text_feat, cache_feat], dim=1)
+        samp_num = feats.shape[1]
+        
         sim_sum = torch.zeros((feat_dim)).cuda()
         count = 0
         for i in range(cate_num):
@@ -50,6 +67,7 @@ def cal_criterion(cfg, clip_weights, cache_keys):
     criterion = (-1) * cfg['w'][0] * sim + cfg['w'][1] * torch.var(clip_weights, dim=1)
     _, indices = torch.topk(criterion, k=cfg['feat_num'])
     return indices
+
 
 def load_text_feature(cfg):
     save_path = cfg['cache_dir'] + "/text_weights_cupl_t.pt"
