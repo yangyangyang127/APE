@@ -59,7 +59,7 @@ def cal_criterion(cfg, clip_weights, cache_keys, only_use_txt=False):
                 for m in range(samp_num):
                     for n in range(samp_num):
                         if i != j:
-                            sim_sum += feats[i, m, :] * feats[i, n, :]
+                            sim_sum += feats[i, m, :] * feats[j, n, :]
                             count += 1
         sim = sim_sum / count
         torch.save(sim, save_file)
