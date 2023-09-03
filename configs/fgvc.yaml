@@ -6,7 +6,7 @@ seed: 3407
 # ------ Hyperparamters ------
 search_hp: True
 
-search_scale: [10, 10, 1]
+search_scale: [20, 10, 1]
 search_step: [200, 20, 20]
 
 init_beta: 1
@@ -14,7 +14,8 @@ init_alpha: 5
 init_gamma: 0.1
 
 eps: 0.001
-feat_num: 900
+training_feat_num: 900
+training_free_feat_num: 800
 
 w_training_free: [0.1, 0.9]
 w_training: [0.2, 0.8]
