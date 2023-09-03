@@ -10,13 +10,14 @@ search_scale: [7, 7, 1]
 search_step: [200, 20, 20]
 
 init_beta: 1
-init_alpha: 5
+init_alpha: 3
 init_gamma: 0.1
 
 eps: 0.001
-feat_num: 800
+training_feat_num: 800
+training_free_feat_num: 700
 
-w_training_free: [0.7, 0.3]
+w_training_free: [0.4, 0.6]
 w_training: [0.2, 0.8]
 
 # ------ Basic Config ------
