@@ -36,7 +36,7 @@ def APE(cfg, cache_keys, cache_values, val_features, val_labels, test_features, 
     cache_keys, cache_values = cache_keys.reshape(-1, feat_dim), cache_values.reshape(-1, cate_num)
     
     cfg['w'] = cfg['w_training_free']
-    indices = cal_criterion(cfg, clip_weights, cache_keys)
+    indices = cal_criterion(cfg, clip_weights, cache_keys, only_use_txt=False)
     
     new_clip_weights = clip_weights[indices, :]
     new_cache_keys = cache_keys[:, indices]
@@ -160,11 +160,11 @@ def APE_T(cfg, cache_keys, cache_values, val_features, val_labels, test_features
         with torch.no_grad():
             new_cache_keys, new_clip_weights, R_FW = adapter(cache_keys, clip_weights, cache_values)
 
-            R_fF = test_features @ new_cache_keys.half().t()
+            R_fF = val_features @ new_cache_keys.half().t()
             cache_logits = ((-1) * (beta - beta * R_fF)).exp() @ R_FW
-            R_fW = 100. * test_features @ new_clip_weights
+            R_fW = 100. * val_features @ new_clip_weights
             ape_logits = R_fW + cache_logits * alpha
-        acc = cls_acc(ape_logits, test_labels)
+        acc = cls_acc(ape_logits, val_labels)
 
         print("**** APE-T's test accuracy: {:.2f}. ****\n".format(acc))
         if acc > best_acc:
