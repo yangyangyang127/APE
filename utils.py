@@ -19,7 +19,7 @@ def cls_acc(output, target, topk=1):
     return acc
 
 
-def cal_criterion(cfg, clip_weights, cache_keys, only_use_txt=False):
+def cal_criterion(cfg, clip_weights, cache_keys, only_use_txt=True, training_free=True):
     
     feat_dim, cate_num = clip_weights.shape
     text_feat = clip_weights.t().unsqueeze(1)
@@ -35,7 +35,6 @@ def cal_criterion(cfg, clip_weights, cache_keys, only_use_txt=False):
         print('Calculating criterion...')
         
         feats = text_feat.squeeze()
-        print(feats.shape)
         
         sim_sum = torch.zeros((feat_dim)).cuda()
         count = 0
@@ -65,7 +64,11 @@ def cal_criterion(cfg, clip_weights, cache_keys, only_use_txt=False):
         torch.save(sim, save_file)
 
     criterion = (-1) * cfg['w'][0] * sim + cfg['w'][1] * torch.var(clip_weights, dim=1)
-    _, indices = torch.topk(criterion, k=cfg['feat_num'])
+    
+    if training_free:
+        _, indices = torch.topk(criterion, k=cfg['training_free_feat_num'])
+    else: 
+        _, indices = torch.topk(criterion, k=cfg['training_feat_num'])
     return indices
 
 
@@ -118,8 +121,8 @@ class APE_Training(nn.Module):
         self.value_weights = nn.Parameter(torch.ones([self.cate_num*cfg['shots'], 1]).half().cuda(), requires_grad=True)
         self.indices = cal_criterion(cfg, clip_weights, cache_keys)
 
-        self.res = nn.Parameter(torch.zeros([self.cate_num, cfg['feat_num']]).half().cuda(), requires_grad=True)
-        self.feat_num = cfg['feat_num']
+        self.res = nn.Parameter(torch.zeros([self.cate_num, cfg['training_feat_num']]).half().cuda(), requires_grad=True)
+        self.feat_num = cfg['training_feat_num']
         
     def forward(self, cache_keys, clip_weights, cache_values):
         
