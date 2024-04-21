@@ -69,6 +69,8 @@ CUDA_VISIBLE_DEVICES=0 python main.py --config configs/[dataset_name].yaml --sho
 ```
 users can test the proposed APE and APE-T, where you can change the `dataset_name` and `shot_number`. `dataset_name` should be one of `[caltech101, dtd, eurosat, fgvc, food101, imagenet, oxford_flowers, oxford_pets, stanford_cars, sun397, ucf101]`, and `shot_number` is chosen from 1/2/4/8/16.
 
+The detailed results are provided in [APE_results](https://github.com/yangyangyang127/APE/blob/main/APE_results.ipynb) file.
+
 
 ## Acknowledgements
 We build on several previous well-maintained repositories like [TIP-Adapter](https://github.com/gaopengcuhk/Tip-Adapter/), [CLIP](https://github.com/openai/CLIP/tree/main/clip), and [CoOp](https://github.com/KaiyangZhou/CoOp/), [SuS-X](https://github.com/vishaal27/SuS-X), and [CuPL](https://github.com/sarahpratt/CuPL). We thank the authors for providing such amazing code, and enabling further research towards better vision-language model adaptation.
